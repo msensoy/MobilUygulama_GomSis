@@ -40,7 +40,7 @@ Adafruit, sensörünüzün düzgün çalışıp çalışmadığını kontrol etm
 Örnek komut dosyası iki parametre alır. Birincisi, DHT11'i temsil etmek için “11” olarak ayarlanan sensör tipidir. İkincisi GPIO numarasıdır. </br>
     **!Not: Komut dosyasındaki GPIO numaralandırılması BCM numaralandırmaya göre ayarlanmıştır.**
 ## NGINX Web Sunucusu Kurulumu
-![NGINX](https://github.com/msensoy/GomSisProje/blob/master/Resimler/nginx.PNG) </br>
+![NGINX](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/nginx.PNG) </br>
     NGNIX tasarlanırken düşük hafıza kullanımı, yüksek eş zamanlı çalışma ve yüksek performans sağlayacak şekilde tasarlanan açık kaynak kodlu bir web sunucusudur. 
     Varsayılan olarak, Nginx'in dosya yüklemelerinde 1 MB sınırı vardır. Dosya yükleme boyutunu ayarlamak için Nginx’in ngx_http_core_module modülünün bir parçası olan client_max_body_size yönergesini kullanabilirsiniz. Bu yönerge http, sunucu veya konum bağlamında ayarlanabilir.
     Linux platformu haricinde  Unix, BSD, Windows gibi platformlarda çalışabilmektedir.
@@ -50,7 +50,7 @@ Adafruit, sensörünüzün düzgün çalışıp çalışmadığını kontrol etm
     `/etc/init.d/nginx start` komutu ile Nginx servisi başlatılır.
     Kontrol etmek için bilgisayardan tarayıcıyı açılıp Raspberry Pi’e ait IP adresi yazılır ve nginx sayfası çıkması gerekir.
 ## SQLite Kurulumu    
-![SQLite](https://github.com/msensoy/GomSisProje/blob/master/Resimler/sqlite.PNG) </br>
+![SQLite](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/sqlite.PNG) </br>
     Verileri yazmak için Raspberry Pi üzerine kurulan veri tabanı yazılımıdır. Yapılan uygulamada çok büyük miktarlarda veri tutulmadığından bu uygulama için SQLite veri tabanı kullanıldı. Sqlite kütüphanesi 500 KiB’den küçüktür. Daha fazla yer saklamak için gereksiz özellikler devre dışı bırakılabilir. Kütüphanenin boyutu 300 KiB’ye kadar düşürülebilir. 
     Uygulamamız web tabanlı bir uygulama olacağından proje klasörünü Nginx web sunucumuzun doküman kök dizini içinde açmamız daha iyi olacaktır.
     Bu klasöre Raspberry Pi kullanıcısının yazma yetkisi olmadığından burada klasör veya dosya açarken komutları «sudo» ile birlikte kullanmak gerekecektir.
@@ -75,7 +75,7 @@ Adafruit, sensörünüzün düzgün çalışıp çalışmadığını kontrol etm
     `sudo python ./veri_oku.py` komutunu girdiğimizde veri tabanına kayıt yapıp bir satır aşağıya inmesi gerekir.
     Programımız hatasız olarak çalıştığında sıcaklık ve nem verileri sensörden okunup veri tabanına yazılacak ve tekrar komut satırına dönülecektir.
 ## Flask Framework Kurulumu
-![Flask Logo](https://github.com/msensoy/GomSisProje/blob/master/Resimler/flask.PNG) </br>
+![Flask Logo](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/flask.PNG) </br>
     Veri tabanına keydedilen verileri web ortamında yayınlamak için Python diliyle yazılmış olan mikro framework olan Flask kullanıldı.     Flask bir mikro framework olmasına rağmen küçük boyutlu ve kolay öğrenilmesi nedeniyle web uygulamaları ve API’lar geliştirmek için uygundur. Flask’i kurmadan önce Python paket yöneticisi pip’i kurmamız gerekiyor.
     `sudo apt-get install python-pip` komutu ile "pip" kurulur.
     `pip install` flask komutu flask komutu ile Flask'ın kurulumu sağlayanacaktır.
@@ -92,7 +92,7 @@ Adafruit, sensörünüzün düzgün çalışıp çalışmadığını kontrol etm
  ### Web Sitesini Yayına Alma   
 `python uygulama.py` komutu ile uygulama Flask geliştirme sunucusu ile çalıştırılır. Bu işlemler tamamlandıktan sonra veritabanındaki kaydedilen veriler sitede gözükür. </br>
 `sudo python veri_oku.py` kodu çalışğında veritabanına yeni bir kayıt eklenir. Ardından `python uygulama.py` komutu ile tekrar sunucu çalıştırılarak güncel web sitesine erişilebilir.</br>
-![Sonuc](https://github.com/msensoy/GomSisProje/blob/master/Resimler/sonuc.PNG) </br>
+![Sonuc](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/sonuc.PNG) </br>
  ### Sistemin Otomatikleştirilmesi
 Manuel olarak çalıştırılan uygulamada verilerin otomatik olarak siteye gönderilebilmesi için Linux'un görev yöneticisi "cron" dan yararlanılabilir. Sistemin her 15 dk da bir çalışması için adım adım yapılacaklar :</br>
 	1- /var/www/ klasör dizinine geçilir. </br>
@@ -100,8 +100,8 @@ Manuel olarak çalıştırılan uygulamada verilerin otomatik olarak siteye gön
 	3- `sudo chown root:root /var/www/veri_oku.py` komutu yazılır. Bu komut "veri_oku.py" dosyamızın sahibini root kullanıcısı olarak ayarlar. Çünkü GPIO pinlerine erişebilmek için bu kodun root kullanıcısı tarafından çalıştırılması gerekir.</br>
 	4- `sudo chmod 777 veriler.db` komutu ile veritabanı dosyamıza bütün kullanıcılar için yazma yetkisi verilir.</br>
 	5- `sudo crontab -u root -e` komutu ile zamanlanmış görev eklenebilir. Bu komutu girdikten sonra ekrana açılacak olan dökümanın en alt satırına `*/15 * * * * /usr/bin/python /var/www/veri_oku.py` kodunu eklediğimizde işlemimiz tamamlanmış olacaktır. </br>
-![Sonuc](https://github.com/msensoy/GomSisProje/blob/master/Resimler/cron.PNG) </br>
-![Sonuc](https://github.com/msensoy/GomSisProje/blob/master/Resimler/sonucOtomatiklestirme.PNG) </br>
+![Sonuc](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/cron.PNG) </br>
+![Sonuc](https://github.com/msensoy/MobilUygulama_GomSis/blob/master/Resimler/sonucOtomatiklestirme.PNG) </br>
 
 
 
