@@ -1,0 +1,5 @@
+https://randomnerdtutorials.com/sqlite-database-on-a-raspberry-pi/
+https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md
+https://projects.raspberrypi.org/en/projects/python-web-server-with-flask
+https://www.electronicwings.com/raspberry-pi/dht11-interfacing-with-raspberry-pi
+https://www.elektrikport.com/teknik-kutuphane/raspberry-pi-ile-dht11-sicaklik-ve-nem-sensoru/21862#ad-image-0
